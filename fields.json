@@ -1,0 +1,116 @@
+[
+  {
+    "key": "enabled",
+    "type": "boolean",
+    "label": "Enable remote access",
+    "help": "Off by default. While off, nothing is sent to or read from Slack."
+  },
+  {
+    "key": "secret_ref",
+    "label": "Bot token secret",
+    "placeholder": "secret://workspace/slack_bot",
+    "help": "Wallet reference holding the Slack bot token (xoxb-...), never the token itself."
+  },
+  {
+    "key": "allowed_channels",
+    "type": "json",
+    "rows": 2,
+    "label": "Allowed conversation IDs",
+    "help": "JSON array of channel, private channel or DM IDs, e.g. [\"C0123456789\", \"D0123456789\"]. Any other conversation is refused before the wallet is read."
+  },
+  {
+    "key": "default_channel",
+    "label": "Default conversation ID",
+    "placeholder": "C0123456789",
+    "help": "Conversation used when an input gives no channel. It must also be allowed. Leave empty to require channel."
+  },
+  {
+    "key": "file_root",
+    "type": "directory",
+    "label": "Shareable files directory",
+    "help": "Only regular files inside this directory can be uploaded from the file input. Empty disables uploads."
+  },
+  {
+    "key": "max_messages",
+    "type": "integer",
+    "min": 1,
+    "max": 1000,
+    "label": "Messages per read",
+    "help": "Upper bound and default for one read_history or read_replies operation."
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "min": 5,
+    "max": 300,
+    "advanced": true,
+    "label": "Operation deadline (s)",
+    "help": "Total time for one operation, including pages, upload steps and retries after HTTP 429. Ambiguous writes are never retried."
+  },
+  {
+    "key": "page_size",
+    "type": "integer",
+    "min": 1,
+    "max": 200,
+    "advanced": true,
+    "label": "Messages per page",
+    "help": "limit sent to conversations.history and conversations.replies; Slack recommends 200 or fewer."
+  },
+  {
+    "key": "max_pages",
+    "type": "integer",
+    "min": 1,
+    "max": 20,
+    "advanced": true,
+    "label": "Pages per read",
+    "help": "A read stops after this many pages and returns next_cursor to continue later."
+  },
+  {
+    "key": "max_retries",
+    "type": "integer",
+    "min": 0,
+    "max": 5,
+    "advanced": true,
+    "label": "Retries after HTTP 429",
+    "help": "Only rate-limited calls, which Slack did not process, are retried."
+  },
+  {
+    "key": "max_retry_wait_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 120,
+    "advanced": true,
+    "label": "Longest retry wait (s)",
+    "help": "A Retry-After above this value returns a rate_limited error instead of waiting."
+  },
+  {
+    "key": "max_file_bytes",
+    "type": "integer",
+    "min": 1024,
+    "max": 104857600,
+    "advanced": true,
+    "label": "File size limit (bytes)",
+    "help": "Upper bound for one uploaded file, from 1 KiB to 100 MiB."
+  },
+  {
+    "key": "max_response_bytes",
+    "type": "integer",
+    "min": 65536,
+    "max": 8388608,
+    "advanced": true,
+    "label": "Response size limit (bytes)",
+    "help": "Larger Slack responses are refused as protocol errors."
+  },
+  {
+    "key": "api_base_url",
+    "advanced": true,
+    "label": "Web API origin",
+    "help": "Keep https://slack.com. Only a loopback test double (http://127.0.0.1:port) may replace it."
+  },
+  {
+    "key": "ca_file",
+    "advanced": true,
+    "label": "Custom CA file",
+    "help": "Optional absolute PEM file, used only with an HTTPS loopback test double. TLS verification cannot be disabled."
+  }
+]
